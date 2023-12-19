@@ -13,7 +13,7 @@ const getTeamMatches = async (req, res) => {
   const teamId = req.params.teamId;
   const response = await pool.query(
     "SELECT * FROM matches m LEFT JOIN teams t ON m.match_awayteam_id = t.team_key OR m.match_hometeam_id = t.team_key WHERE t.team_key =  $1",
-    teamId
+    [teamId]
   );
   res.status(200).json(response.rows);
 };
@@ -22,7 +22,7 @@ const getTeamPlayers = async (req, res) => {
   const teamId = req.params.teamId;
   const response = await pool.query(
     "SELECT * FROM team_players p LEFT JOIN teams t ON p.team_id = t.team_key WHERE t.team_key = $1",
-    teamId
+    [teamId]
   );
   res.status(200).json(response.rows);
 };
@@ -30,8 +30,8 @@ const getTeamPlayers = async (req, res) => {
 const getTeam = async (req, res) => {
   const teamId = req.params.teamId;
   const response = await pool.query(
-    "SELECT * FROM teams WHERE team_id = $1",
-    teamId
+    "SELECT * FROM teams WHERE team_key = $1",
+    [teamId]
   );
   res.status(200).json(response.rows);
 };
