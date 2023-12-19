@@ -11,7 +11,11 @@ app.use(cors());
 //routes
 app.use(require("./routes/index"));
 
-app.listen(4000, () => console.log("Listening on port 4000"));
+app
+  .listen(4000, () => console.log("Listening on port 4000"))
+  .on("error", (error) => {
+    console.error("Failed to start server:", error);
+  });
 
 //CronJob
 cron.schedule("0 0 * * *", () => {

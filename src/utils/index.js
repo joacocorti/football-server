@@ -57,7 +57,7 @@ const fetchAndSaveData = async (from, to, leagueId) => {
       });
     });
   } catch (error) {
-    console.error("Error fetching data:", error);
+     console.error("Error fetching or saving data:", error);
   }
 };
 const saveMatchData = async (matchData) => {
