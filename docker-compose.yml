@@ -1,0 +1,27 @@
+version: '3.3'
+services:
+  app:
+    build: .
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+    environment:
+      - POSTGRESQL_HOST=db
+      - POSTGRESQL_USER=tad
+      - POSTGRESQL_PASSWORD=tad
+      - POSTGRESQL_DATABASE=football
+
+  db:
+    image: postgres:latest
+    ports:
+      - "5433:5432"
+    environment:     
+      - POSTGRESQL_DATABASE=football
+      - POSTGRESQL_USER=tad
+      - POSTGRESQL_PASSWORD=tad
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
