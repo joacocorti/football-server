@@ -13,9 +13,9 @@ const fetchAndSaveData = async (from, to, leagueId) => {
   const url_events = `https://apiv3.apifootball.com/?action=get_events&from=${from}&to=${to}&league_id=${leagueId}&APIkey=${apiKey}`;
   const url_teams = `https://apiv3.apifootball.com/?action=get_teams&league_id=${leagueId}&APIkey=${apiKey}`;
   try {
-    const response_teams = await axios.get(url_teams, { timeout: 100000 });
+    const response_teams = await axios.get(url_teams);
     const teams = response_teams.data;
-    const response_events = await axios.get(url_events, { timeout: 100000 });
+    const response_events = await axios.get(url_events);
     const events = response_events.data;
 
     events.forEach(async (event) => {
